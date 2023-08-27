@@ -1,0 +1,101 @@
+@import url('reset.css');
+
+
+body {
+    font-family: sans-serif;
+}
+
+.header {
+    background: rgb(48, 191, 86);
+    padding: 30px 0;
+}
+
+.header__body {
+    display: flex;
+    justify-content: center;
+}
+
+.header__list {
+    display: flex;
+    gap: 30px;
+}
+
+.header__item {
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #242323;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+main {
+    padding-top: 50px;
+}
+
+.container {
+    max-width: 1060px;
+    margin: 0 auto;
+}
+
+.vocabulary__item {
+    margin-bottom: 15px;
+    background: #687867;
+    box-shadow: 4px 4px 5px rgb(54, 54, 54);
+    padding: 20px;
+}
+
+.title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.transcription {
+    margin-right: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.translation {
+    font-style: italic;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+    display: inline-block;
+    color: #313131;
+}
+
+.adding__title {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.adding__form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+.adding__input {
+    margin-bottom: 10px;
+}
+
+.adding__btn {
+    padding: 10px 30px;
+    background: #242323;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    width: 100px;
+    margin: 30px auto 0;
+}

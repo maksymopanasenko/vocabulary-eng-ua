@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__body">
+                <nav>
+                    <ul class="header__list">
+                        <li class="header__item vocabulary_btn">Vocabulary</li>
+                        <li class="header__item new-word_btn">Add new word</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="vocabulary">
+            <div class="container">
+                <div id="root"></div>
+            </div>
+        </section>
+        <section class="adding" style="display: none;">
+            <div class="container">
+                <div class="adding__title">Add new word</div>
+                <form class="adding__form">
+                    <label for="name">Word</label>
+                    <input type="text" class="adding__input" id="name" name="name" required>
+
+                    <label for="transcription">Transcription</label>
+                    <input type="text" class="adding__input" id="transcription" name="transcription" required>
+
+                    <label for="translation">Translation</label>
+                    <input type="text" class="adding__input" id="translation" name="translation" required>
+
+                    <label for="description">Description</label>
+                    <input type="text" class="adding__input" id="description" name="description" required>
+
+                    <button class="adding__btn">Save</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>
