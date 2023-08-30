@@ -41,9 +41,8 @@ function getWords() {
     })
     .then(response => response.json())
     .then(response => {
-        const ul = document.createElement('ul');
-        console.log(response);
-
+        const ul = document.getElementById('root');
+        ul.innerHTML = '';
         response.forEach(({word, transcription, translation, description}) => {
             const li = document.createElement('li');
             li.className = 'vocabulary__item';
@@ -54,8 +53,6 @@ function getWords() {
             `;
             ul.append(li);
         });
-
-        document.getElementById('root').append(ul);
     });
 }
 
@@ -76,10 +73,9 @@ wordAddingForm.addEventListener('submit', (e) => {
         body: JSON.stringify(body)
     })
     .then(response => response.json())
-    .then(response => console.log(response));
+    .then(() => getWords());
 
-    e.target.reset();  
-    getWords();          
+    e.target.reset();         
 });
 
 logOutBTN.addEventListener('click', () => {
