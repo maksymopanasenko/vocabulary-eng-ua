@@ -1,0 +1,48 @@
+form {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid grey;
+    color: darkslategray;
+    margin: 100px auto 0;
+    padding: 18px;
+    box-sizing: border-box;
+}
+
+form h1 {
+    font-size: 24px;
+    margin: 15px 0 25px;
+    width: 100%;
+    text-align: center;
+}
+
+.form__input-wrapper > input {
+    padding: 10px;
+}
+
+.form__input-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form__input-wrapper label {
+    font-size: 14px;
+    line-height: 16px;
+    color: grey;
+    margin-bottom: 5px;
+}
+
+.login__btn {
+    padding: 10px 30px;
+    background: #242323;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    margin: 0 auto;
+}

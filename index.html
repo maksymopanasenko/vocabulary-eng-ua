@@ -3,34 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Vocabulary</title>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="header__body">
+                <a href="#" class="header__logo">
+                    <img src="img/dictionary.png" alt="logo" width="80px">
+                </a>
                 <nav>
-                    <ul class="header__list">
-                        <li class="header__item vocabulary_btn">Vocabulary</li>
+                    <ul class="header__list" style="display: none;">
+                        <li class="header__item vocabulary_btn active">Vocabulary</li>
                         <li class="header__item new-word_btn">Add new word</li>
                     </ul>
                 </nav>
+                <a role="button" class="log-out" style="display: none">Log out</a></li>
             </div>
         </div>
     </header>
     <main>
-        <section class="vocabulary">
+        <form class="login__form" autocomplete="off">
+            <h1>Sing In Form</h1>
+    
+            <div class="form__input-wrapper">
+                <label for="email">Email*</label>
+                <input type="text" name="email" id="email" placeholder="Your email" required autocomplete="off">
+            </div>
+    
+            <div class="form__input-wrapper">
+                <label for="password">Password*</label>
+                <input type="password" name="password" id="password" placeholder="Your password" required autocomplete="off">
+            </div>
+    
+            <button type="submit" class="login__btn">Sing In</button>
+        </form>
+
+        <section class="vocabulary" style="display: none;">
             <div class="container">
                 <div id="root"></div>
             </div>
         </section>
+
         <section class="adding" style="display: none;">
             <div class="container">
                 <div class="adding__title">Add new word</div>
                 <form class="adding__form">
                     <label for="name">Word</label>
-                    <input type="text" class="adding__input" id="name" name="name" required>
+                    <input type="text" class="adding__input" id="name" name="word" required>
 
                     <label for="transcription">Transcription</label>
                     <input type="text" class="adding__input" id="transcription" name="transcription" required>

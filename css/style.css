@@ -1,18 +1,25 @@
 @import url('reset.css');
+@import url('form.css');
 
 
 body {
     font-family: sans-serif;
 }
 
+.container {
+    max-width: 1260px;
+    margin: 0 auto;
+}
+
 .header {
     background: rgb(48, 191, 86);
-    padding: 30px 0;
+    padding: 8px 0;
 }
 
 .header__body {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header__list {
@@ -23,20 +30,19 @@ body {
 .header__item {
     font-size: 20px;
     text-transform: uppercase;
-    color: #fff;
+    color: #606060;
     background: #242323;
     padding: 5px 15px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-main {
-    padding-top: 50px;
+.active {
+    color: #fff;
 }
 
-.container {
-    max-width: 1060px;
-    margin: 0 auto;
+main {
+    padding-top: 50px;
 }
 
 .vocabulary__item {
@@ -88,6 +94,7 @@ label {
 
 .adding__input {
     margin-bottom: 10px;
+    padding: 10px;
 }
 
 .adding__btn {
@@ -98,4 +105,10 @@ label {
     font-size: 18px;
     width: 100px;
     margin: 30px auto 0;
+}
+
+.log-out {
+    padding: 7px;
+    border: 1px solid black;
+    border-radius: 5px;
 }

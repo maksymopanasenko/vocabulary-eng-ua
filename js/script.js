@@ -1,43 +1,101 @@
-const vocabulary = [
-    {
-        name: "retirement",
-        transcription: "rə'tī(ə)rmənt",
-        translation: "відставка",
-        description: "Retirement is when someone stops working, usually after many years, to take a break or start a new occupation."
-    },
-    {
-        name: "numb",
-        transcription: "nəm",
-        translation: "оніміння",
-        description: "Numb is an adjective that describes a lack of sensation. After skiing all day, your toes might be numb from the cold. You'd feel numb for hours after hearing that your favorite band broke up."
-    }
-];
+const logInForm = document.querySelector('.login__form'),
+      logOutBTN = document.querySelector('.log-out'),
+      navigation = document.querySelector('.header__list'),
+      vocabulary = document.querySelector('.vocabulary'),
+      wordAddingForm = document.querySelector('.adding__form');
 
-const btns = document.querySelector('.header__list');
+const loginURL = 'https://ajax.test-danit.com/api/v2/cards/login';
+const TOKEN = 'token';
 
-function createList(array) {
-    const ul = document.createElement('ul');
-
-    array.forEach(({name, transcription, translation, description}) => {
-        const li = document.createElement('li');
-        li.className = 'vocabulary__item';
-        li.innerHTML = `
-            <h3 class="title"><span class="transcription">${name}</span>[ ${transcription} ]</h3>
-            <span class="translation">${translation}</span>
-            <p class="description">${description}</p>
-        `;
-        ul.append(li);
+logInForm.addEventListener('submit', function(event){
+    event.preventDefault();
+    const body = {}
+    event.target.querySelectorAll('input').forEach(input => {
+        body[input.name] = input.value;
     });
 
-    document.getElementById('root').append(ul);
+    axios.post(loginURL, body)
+        .then(({ data }) => {
+            localStorage.setItem(TOKEN, data);
+            location.reload();
+        })
+        .catch(({response}) => {
+            alert(response.data);
+        });
+});
+
+if (localStorage.getItem(TOKEN)) {
+    logInForm.style.display = 'none';
+    logOutBTN.style.display = 'block';
+    navigation.style.display = 'flex';
+    vocabulary.style.display = 'block';
+
+    getWords();
 }
 
-createList(vocabulary);
+function getWords() {
+    fetch("https://ajax.test-danit.com/api/v2/cards", {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`
+        }
+    })
+    .then(response => response.json())
+    .then(response => {
+        const ul = document.createElement('ul');
+        console.log(response);
 
+        response.forEach(({word, transcription, translation, description}) => {
+            const li = document.createElement('li');
+            li.className = 'vocabulary__item';
+            li.innerHTML = `
+                <h3 class="title"><span class="transcription">${word}</span>[ ${transcription} ]</h3>
+                <span class="translation">${translation}</span>
+                <p class="description">${description}</p>
+            `;
+            ul.append(li);
+        });
+
+        document.getElementById('root').append(ul);
+    });
+}
+
+wordAddingForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let body = {};
+
+    e.target.querySelectorAll('input').forEach(input => {
+        body[input.name] = input.value;
+    });
+
+    fetch("https://ajax.test-danit.com/api/v2/cards", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`
+        },
+        body: JSON.stringify(body)
+    })
+    .then(response => response.json())
+    .then(response => console.log(response));
+
+    e.target.reset();  
+    getWords();          
+});
+
+logOutBTN.addEventListener('click', () => {
+    localStorage.removeItem(TOKEN);
+    location.reload();
+});
+
+
+const btns = document.querySelector('.header__list');
 
 btns.addEventListener('click', (e) => {
     const target = e.target;
     if (target.nodeName != "LI") return;
+    
+    document.querySelector('.new-word_btn').classList.toggle('active');
+    document.querySelector('.vocabulary_btn').classList.toggle('active');
 
     if (target.classList.contains('vocabulary_btn')) {
         document.querySelector('.adding').style.display = 'none';
@@ -47,4 +105,3 @@ btns.addEventListener('click', (e) => {
         document.querySelector('.vocabulary').style.display = 'none';
     }
 });
-
