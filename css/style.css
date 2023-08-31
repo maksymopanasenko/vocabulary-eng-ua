@@ -4,11 +4,16 @@
 
 body {
     font-family: sans-serif;
+    height: 100vh;
 }
 
 .container {
     max-width: 1260px;
     margin: 0 auto;
+}
+
+main .container {
+    max-width: 900px;
 }
 
 .header {
@@ -42,14 +47,22 @@ body {
 }
 
 main {
-    padding-top: 50px;
+    padding: 50px 0;
+    overflow: hidden;
 }
 
 .vocabulary__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 15px;
     background: #687867;
     box-shadow: 4px 4px 5px rgb(54, 54, 54);
     padding: 20px;
+}
+
+.vocabulary__body {
+    max-width: 80%;
 }
 
 .title {
@@ -71,6 +84,10 @@ main {
     margin-bottom: 10px;
     display: inline-block;
     color: #313131;
+}
+
+.description {
+    text-transform: capitalize;
 }
 
 .adding__title {
@@ -111,4 +128,23 @@ label {
     padding: 7px;
     border: 1px solid black;
     border-radius: 5px;
+}
+
+.delete__btn {
+    padding: 10px 30px;
+    background: #242323;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.message {
+    margin: 30px auto 0;
+    max-width: 400px;
+    position: relative;
+    top: 120px;
+    text-align: center;
+    transition: 1s ease-in;
+    padding: 20px;
+    background: #d6d6d651;
 }
