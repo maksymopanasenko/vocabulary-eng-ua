@@ -1,3 +1,5 @@
+import WordCard from "./class.js";
+
 const logInForm = document.querySelector('.login__form'),
       logOutBtn = document.querySelector('.log-out'),
       navigation = document.querySelector('.header__list'),
@@ -44,18 +46,9 @@ function getWords() {
         const ul = document.getElementById('root');
         ul.innerHTML = '';
         response.forEach(({id, word, transcription, translation, description}) => {
-            const li = document.createElement('li');
-            li.className = 'vocabulary__item';
-            li.innerHTML = `
-                <div class="vocabulary__body">
-                    <h3 class="title"><span class="transcription">${word}</span>[ ${transcription} ]</h3>
-                    <span class="translation">${translation}</span>
-                    <p class="description">${description}</p>                
-                </div>
-                <button class="delete__btn" onClick="deleteCard(${id})">Delete</button>
-            `;
-            ul.append(li);
+            new WordCard(id, word, transcription, translation, description).render(ul);
         });
+        
     });
 }
 
@@ -106,20 +99,6 @@ wordAddingForm.addEventListener('submit', (e) => {
     });
 });
 
-function deleteCard(id) {
-    try {
-        fetch(`https://ajax.test-danit.com/api/v2/cards/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`
-            }
-        })
-        .then(() => location.reload());
-    } catch(e) {
-        console.log(e);
-    }
-}
-
 logOutBtn.addEventListener('click', () => {
     localStorage.removeItem(TOKEN);
     location.reload();
@@ -144,3 +123,5 @@ btns.addEventListener('click', (e) => {
         document.querySelector('.vocabulary_btn').classList.remove('active');
     }
 });
+
+export {TOKEN};

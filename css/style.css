@@ -47,7 +47,7 @@ main .container {
 }
 
 main {
-    padding: 50px 0;
+    padding: 50px 0 20px;
     overflow: hidden;
 }
 
@@ -63,6 +63,16 @@ main {
 
 .vocabulary__body {
     max-width: 80%;
+}
+
+.vocabulary__search {
+    display: block;
+    width: 250px;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 0 auto 30px;
 }
 
 .title {
