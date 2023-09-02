@@ -65,14 +65,35 @@ main {
     max-width: 80%;
 }
 
+.search__holder {
+    position: relative;
+    width: 300px;
+    padding-left: 50px;
+    margin: 0 auto 30px;
+    background: rgb(48, 191, 86);
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.search__holder::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    background: url('../icons/search.png') center/cover no-repeat;
+}
+
 .vocabulary__search {
     display: block;
-    width: 250px;
+    width: 100%;
     padding: 10px;
     font-size: 18px;
-    border-radius: 5px;
-    border: 1px solid black;
-    margin: 0 auto 30px;
+    border-color: transparent;
+    border-radius: 0 5px 5px 0;
+
 }
 
 .title {
@@ -156,5 +177,5 @@ label {
     text-align: center;
     transition: 1s ease-in;
     padding: 20px;
-    background: #d6d6d651;
+    background: #d9767651;
 }

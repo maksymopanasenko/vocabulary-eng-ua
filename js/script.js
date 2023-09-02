@@ -4,14 +4,15 @@ const logInForm = document.querySelector('.login__form'),
       logOutBtn = document.querySelector('.log-out'),
       navigation = document.querySelector('.header__list'),
       vocabulary = document.querySelector('.vocabulary'),
-      wordAddingForm = document.querySelector('.adding__form');
+      wordAddingForm = document.querySelector('.adding__form'),
+      search = document.querySelector('.vocabulary__search');
 
 const loginURL = 'https://ajax.test-danit.com/api/v2/cards/login';
 const TOKEN = 'token';
 
 logInForm.addEventListener('submit', function(event){
     event.preventDefault();
-    const body = {}
+    const body = {};
     event.target.querySelectorAll('input').forEach(input => {
         body[input.name] = input.value;
     });
@@ -35,7 +36,7 @@ if (localStorage.getItem(TOKEN)) {
     getWords();
 }
 
-function getWords() {
+function getWords(keyWord) {
     fetch("https://ajax.test-danit.com/api/v2/cards", {
         headers: {
             'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`
@@ -45,9 +46,17 @@ function getWords() {
     .then(response => {
         const ul = document.getElementById('root');
         ul.innerHTML = '';
-        response.forEach(({id, word, transcription, translation, description}) => {
-            new WordCard(id, word, transcription, translation, description).render(ul);
-        });
+        if (keyWord) {
+            response.forEach(({id, word, transcription, translation, description}) => {
+                if (word.includes(keyWord)) {
+                    new WordCard(id, word, transcription, translation, description).render(ul);
+                }
+            });
+        } else { 
+            response.forEach(({id, word, transcription, translation, description}) => {
+                new WordCard(id, word, transcription, translation, description).render(ul);
+            });
+        }
         
     });
 }
@@ -57,7 +66,7 @@ wordAddingForm.addEventListener('submit', (e) => {
     let body = {};
 
     e.target.querySelectorAll('input').forEach(input => {
-        body[input.name] = input.value;
+        body[input.name] = input.value.toLowerCase();
     });
 
     fetch("https://ajax.test-danit.com/api/v2/cards", {
@@ -122,6 +131,10 @@ btns.addEventListener('click', (e) => {
         document.querySelector('.new-word_btn').classList.add('active');
         document.querySelector('.vocabulary_btn').classList.remove('active');
     }
+});
+
+search.addEventListener('input', (e) => {
+    getWords(e.target.value.toLowerCase());
 });
 
 export {TOKEN};

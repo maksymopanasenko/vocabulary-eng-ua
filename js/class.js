@@ -35,7 +35,11 @@ class WordCard {
                         'Authorization': `Bearer ${localStorage.getItem(TOKEN)}`
                     }
                 })
-                .then(() => location.reload());
+                .then(response => {
+                    if (response.status == 200) {
+                        this.btn.parentElement.remove();
+                    }
+                });
             } catch(e) {
                 console.log(e);
             }
